@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 st.set_page_config(page_title="Air Quality Dashboard", layout="wide")
 st.title("Air Quality Dashboard")
 
-
 # ----------------------------
 # Sidebar Controls
 # ----------------------------
@@ -22,14 +21,14 @@ st.sidebar.header("⚙️ Controls")
 
 stations = ["Maharashtra", "Delhi", "Rajasthan", "Gujarat",
             "Tamil Nadu", "Karnataka", "West Bengal", "Uttar Pradesh"]
-time_ranges = {"Last 24 Hours": 1, "Last 7 Days": 7, "Last 30 Days": 30}
+
 pollutants = ["PM2.5", "NO2", "O3", "CO", "PM10"]
-forecast_horizons = {"24 Hours": 24, "48 Hours": 48, "72 Hours": 72}
+
 
 station = st.sidebar.selectbox("Monitoring Station", stations)
-time_range = st.sidebar.selectbox("Time Range", list(time_ranges.keys()))
+
 pollutant = st.sidebar.selectbox("Pollutant", pollutants)
-forecast = st.sidebar.selectbox("Forecast Horizon", list(forecast_horizons.keys()))
+
 
 # ----------------------------
 # Load Your Data
@@ -39,10 +38,6 @@ df = pd.read_csv(
     parse_dates=["date"]
 )
 
-# Filter by station & time range
-end_date = df["date"].max()
-start_date = end_date - pd.Timedelta(days=time_ranges[time_range])
-df_filtered = df[(df["State"] == station) & (df["date"] >= start_date)]
 
 # ------------------------
 # AQI Breakpoints
@@ -104,9 +99,7 @@ def calculate_aqi_subindex(concentration, breakpoints):
 st.subheader(f"Current {pollutant} AQI ({station})")
 
 df_range = df[df["State"] == station].copy()
-days = time_ranges[time_range]
-start_date = df_range["date"].max() - pd.Timedelta(days=days)
-df_range = df_range[df_range["date"] >= start_date]
+
 
 def safe_aqi(row, pollutant):
     val = row[pollutant]
@@ -160,10 +153,12 @@ if not df_state.empty:
 else:
     st.warning(f"No data available for {station}.")
 
+
+
 # ============================
 # SECTION 3: Forecast
 # ============================
-st.subheader("📅 7-Day AQI Forecast")
+st.subheader("7-Day AQI Forecast")
 
 forecast_days = 7
 values = df_state["AQI"].dropna().values.reshape(-1, 1)
