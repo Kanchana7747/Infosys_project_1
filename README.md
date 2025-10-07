@@ -20,7 +20,7 @@ Append data to existing SQLite database.
 Retrain forecast models by clicking on the Forecast tab.
 Preview data and basic visualizations before appending.
 
-**🗄 Database****
+**🗄 Database**
 SQLite used to store pollutant measurements and forecast results.
 Table city_data columns:
 date, station_id, AQI, PM25, PM10, NO2, SO2, O3, CO.
@@ -37,10 +37,3 @@ Seasonal decomposition of AQI.
 Average pollutant contribution to AQI.
 Forecast plots for selected locations.
 
-
-
-
-
-Do you want me to do that?
-
-ChatGPT can make mi
