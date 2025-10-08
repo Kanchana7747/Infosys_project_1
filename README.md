@@ -14,7 +14,7 @@ Create heatmaps and pollutant contribution analysis.
 Forecast next days’ air quality.
 
 **2. Admin Panel**
-Secure login (username: admin, password: admin@123).
+Secure login.
 Upload new CSV/Excel datasets.
 Append data to existing SQLite database.
 Retrain forecast models by clicking on the Forecast tab.
