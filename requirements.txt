@@ -5,3 +5,6 @@ seaborn
 pyarrow
 requests
 sqlalchemy
+streamlit
+streamlit-option-menu
+plotly
