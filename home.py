@@ -58,7 +58,8 @@ conn_viewable.commit()
 # Load Default Dataset
 # ----------------------------
 def load_default_data():
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    # Use current working directory instead of __file__
+    BASE_DIR = os.getcwd()
     csv_path = os.path.join(BASE_DIR, "city_day.csv")
     return pd.read_csv(csv_path)
 
@@ -615,6 +616,7 @@ elif app == "Admin Panel":
             
         except Exception as e:
             st.error(f"Error while inserting data: {e}")
+
 
 
 
