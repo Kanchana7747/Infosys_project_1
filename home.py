@@ -23,6 +23,14 @@ from tensorflow.keras.layers import LSTM, Dense
 st.set_page_config(page_title="Air Quality Dashboard", layout="wide")
 st.markdown("<h1 style='text-align: center;'> Air Quality Dashboard</h1>", unsafe_allow_html=True)
 
+BASE_DIR = os.getcwd()  # Streamlit Cloud runs the app from repo root
+
+# CSV
+def load_default_data():
+    return pd.read_csv(os.path.join(BASE_DIR, "city_day.csv"))
+
+df = load_default_data()
+
 # ----------------------------
 # SQLite setup for forecasts (viewable in VS Code)
 # ----------------------------
@@ -54,13 +62,6 @@ CREATE TABLE IF NOT EXISTS pollutant_forecasts (
 """)
 conn_viewable.commit()
 
-# ----------------------------
-# Load Default Dataset
-# ----------------------------
-def load_default_data():
-    return pd.read_csv(r"C:\Users\slaxm\OneDrive\Documents\Air_Aware\city_day.csv")
-    
-df = load_default_data()
 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 df.columns = df.columns.str.strip()
 
@@ -613,6 +614,7 @@ elif app == "Admin Panel":
             
         except Exception as e:
             st.error(f"Error while inserting data: {e}")
+
 
 
 
