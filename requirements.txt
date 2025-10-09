@@ -8,3 +8,5 @@ sqlalchemy
 streamlit
 streamlit-option-menu
 plotly
+statsmodels
+scikit-learn
