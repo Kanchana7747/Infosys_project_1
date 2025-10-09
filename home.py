@@ -58,7 +58,9 @@ conn_viewable.commit()
 # Load Default Dataset
 # ----------------------------
 def load_default_data():
-    return pd.read_csv(r"C:\Users\slaxm\OneDrive\Documents\Air_Aware\city_day.csv")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(BASE_DIR, "city_day.csv")
+    return pd.read_csv(csv_path)
 
 df = load_default_data()
 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
@@ -613,5 +615,6 @@ elif app == "Admin Panel":
             
         except Exception as e:
             st.error(f"Error while inserting data: {e}")
+
 
 
