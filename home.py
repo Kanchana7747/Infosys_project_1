@@ -22,31 +22,6 @@ from tensorflow.keras.layers import LSTM, Dense
 # ----------------------------
 st.set_page_config(page_title="Air Quality Dashboard", layout="wide")
 st.markdown("<h1 style='text-align: center;'> Air Quality Dashboard</h1>", unsafe_allow_html=True)
-# Set background image
-background_image = """
-<style>
-[data-testid="stAppViewContainer"] {
-    background-image: url("https://wallpaperaccess.com/full/338765.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-[data-testid="stHeader"] {
-    background: rgba(0,0,0,0);
-}
-
-[data-testid="stSidebar"] {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-h1, h2, h3, h4, h5, h6, p, span, div {
-    color: white !important;
-}
-</style>
-"""
-st.markdown(background_image, unsafe_allow_html=True)
-
 
 # ----------------------------
 # SQLite setup for forecasts (viewable in VS Code)
@@ -637,6 +612,7 @@ elif app == "Admin Panel":
             
         except Exception as e:
             st.error(f"Error while inserting data: {e}")
+
 
 
 
